@@ -9,7 +9,7 @@ python -m pip install Django
 
 setup a new Django project and app
 
-```
+```bash
 django-admin startproject example_site
 cd example_site
 python manage.py startapp blog
@@ -17,14 +17,14 @@ python manage.py startapp blog
 
 migrations
 
-```
+```bash
 python manage.py makemigrations
 python manage.py migrate
 ```
 
 this will create a new database file called `db.sqlite3` if you are using the default settings. You can change the database settings in `example_site/settings.py` if you want to use a different database.
 
-```
+```python
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -38,7 +38,7 @@ DATABASES = {
 
 create a superuser to access the admin site
 
-```
+```bash
 python manage.py createsuperuser
 ```
 
@@ -47,7 +47,7 @@ accessing the admin site at `http://127.0.0.1:8000/admin/` after starting the se
 
 start server
 
-```
+```bash
 python manage.py runserver
 ```
 
@@ -55,7 +55,7 @@ python manage.py runserver
 
 install Django REST Framework
 
-```
+```bash
 python -m pip install djangorestframework
 ```
 
@@ -69,7 +69,7 @@ Django ORM (Object-Relational Mapping) is a powerful tool that allows you to int
 The `select_related` method is used to optimize database queries by performing a SQL join and including related objects in the same query. This can significantly reduce the number of database queries and improve performance when you need to access related objects.
 
 for example:
-```
+```python
 # without select_related
 posts = Post.objects.all()
 for post in posts:
@@ -87,7 +87,7 @@ for post in posts:
 The `prefetch_related` method is used to optimize database queries by performing a separate query for related objects and then joining them in Python. This is useful when you have a many-to-many relationship or when you want to fetch related objects that are not directly related to the main model.
 
 for example:
-```
+```python
 # without prefetch_related
 posts = Post.objects.all()
 for post in posts:
@@ -104,7 +104,7 @@ for post in posts:
 The `annotate` method is used to add additional fields to your querysets based on aggregate functions. This allows you to perform calculations and aggregations on your data directly in the database, which can improve performance and reduce the amount of data that needs to be processed in Python.
 
 for example:
-```
+```python
 from django.db.models import Count
 # without annotate
 posts = Post.objects.all()
@@ -122,7 +122,7 @@ for post in posts:
 The `aggregate` method is used to perform aggregate calculations on your querysets and return a dictionary of the results. This allows you to perform calculations such as sums, averages, counts, etc. directly in the database, which can improve performance and reduce the amount of data that needs to be processed in Python.
 
 for example:
-```
+```python
 from django.db.models import Avg
 
 # without aggregate
@@ -140,15 +140,18 @@ average_rating = Post.objects.aggregate(Avg('rating'))['rating__avg']  # This wi
 ### conclusions
 
 `select_related` -> one-to-one or foreign key relationships, performs a SQL join and includes related objects in the same query.
+
 `prefetch_related` -> many-to-many relationships or when you want to fetch related objects that are not directly related to the main model, performs a separate query for related objects and then joins them in Python.
+
 `annotate` -> adds additional fields to your querysets based on aggregate functions, allows you to perform calculations and aggregations on your data directly in the database.
+
 `aggregate` -> performs aggregate calculations on your querysets and returns a dictionary of the results, allows you to perform calculations such as sums, averages, counts, etc. directly in the database.
 
 ## Blog URL examples
 
 The app provides both regular and optimized views under `blog/urls.py`:
 
-```
+```python
 path('post/', post_list)
 path('post/<int:id>/', post_detail)
 path('post/optimized/', optimized_post_list)
@@ -159,7 +162,7 @@ path('post/statistics/', post_statistics)
 
 The API also includes standard and optimized endpoints:
 
-```
+```python
 path('api/posts/', PostListCreateView.as_view())
 path('api/posts/<int:pk>/', PostDetailView.as_view())
 path('api/posts/optimized/', OptimizedPostListCreateView.as_view())
