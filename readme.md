@@ -143,3 +143,25 @@ average_rating = Post.objects.aggregate(Avg('rating'))['rating__avg']  # This wi
 `prefetch_related` -> many-to-many relationships or when you want to fetch related objects that are not directly related to the main model, performs a separate query for related objects and then joins them in Python.
 `annotate` -> adds additional fields to your querysets based on aggregate functions, allows you to perform calculations and aggregations on your data directly in the database.
 `aggregate` -> performs aggregate calculations on your querysets and returns a dictionary of the results, allows you to perform calculations such as sums, averages, counts, etc. directly in the database.
+
+## Blog URL examples
+
+The app provides both regular and optimized views under `blog/urls.py`:
+
+```
+path('post/', post_list)
+path('post/<int:id>/', post_detail)
+path('post/optimized/', optimized_post_list)
+path('post/optimized/<int:id>/', optimized_post_detail)
+path('post/annotated/', annotated_post_list)
+path('post/statistics/', post_statistics)
+```
+
+The API also includes standard and optimized endpoints:
+
+```
+path('api/posts/', PostListCreateView.as_view())
+path('api/posts/<int:pk>/', PostDetailView.as_view())
+path('api/posts/optimized/', OptimizedPostListCreateView.as_view())
+path('api/posts/optimized/<int:pk>/', OptimizedPostDetailView.as_view())
+```

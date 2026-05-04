@@ -1,12 +1,12 @@
-<h1>文章列表</h1>
+<h1>註解文章列表</h1>
 
 {% for post in posts %}
   <article>
-    <h2><a href="/post/{{ post.id }}/">{{ post.title }}</a></h2>
+    <h2>標題： {{ post.title }}</a></h2>
     <p>作者：{{ post.author.name }}</p>
     <p>建立時間：{{ post.created_at }}</p>
     <p>評分：{{ post.rating }}</p>
-    <p>留言數：{{ post.num_comments|default:post.comments.count }}</p>
+    <p>留言數：{{ post.num_comments }}</p>
   </article>
 {% empty %}
   <p>目前沒有文章。</p>

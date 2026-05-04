@@ -1,8 +1,8 @@
-<h1>文章列表</h1>
+<h1>優化文章列表</h1>
 
 {% for post in posts %}
   <article>
-    <h2><a href="/post/{{ post.id }}/">{{ post.title }}</a></h2>
+    <h2><a href="/post/optimized/{{ post.id }}/">{{ post.title }}</a></h2>
     <p>作者：{{ post.author.name }}</p>
     <p>建立時間：{{ post.created_at }}</p>
     <p>評分：{{ post.rating }}</p>
