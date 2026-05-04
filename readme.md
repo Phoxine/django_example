@@ -50,3 +50,11 @@ start server
 ```
 python manage.py runserver
 ```
+
+## Django REST Framework
+
+install Django REST Framework
+
+```
+python -m pip install djangorestframework
+```
