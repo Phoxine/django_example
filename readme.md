@@ -12,7 +12,7 @@ setup a new Django project and app
 ```
 django-admin startproject example_site
 cd example_site
-python manage.py startapp blogs
+python manage.py startapp blog
 ```
 
 migrations
@@ -34,4 +34,19 @@ DATABASES = {
         'HOST': 'localhost',
     }
 }
+```
+
+create a superuser to access the admin site
+
+```
+python manage.py createsuperuser
+```
+
+accessing the admin site at `http://127.0.0.1:8000/admin/` after starting the server and log in with the superuser credentials you just created. You should see the `Post` model that you registered in the admin site.
+
+
+start server
+
+```
+python manage.py runserver
 ```
